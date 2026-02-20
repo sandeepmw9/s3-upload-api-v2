@@ -1,0 +1,41 @@
+# Example Terraform Variables for S3 Upload API with Presigned URLs
+# Copy this file to terraform.tfvars and update with your values
+
+# AWS Configuration
+aws_region  = "us-east-1"
+environment = "dev"
+
+# Project Configuration
+project_name = "s3-upload-api"
+
+# S3 Bucket (MUST BE GLOBALLY UNIQUE)
+bucket_name        = "my-pdf-uploads-bucket-12345"
+enable_versioning  = true
+enable_encryption  = true
+
+# Lambda Configuration
+lambda_function_name = "upload-handler"
+lambda_timeout       = 30
+lambda_memory_size   = 256
+
+# File Upload Limits
+max_file_size_mb      = 6      # Max for direct POST uploads
+presigned_url_expiry  = 3600   # 1 hour in seconds
+
+# API Gateway Configuration
+api_name       = "upload-api"
+api_stage_name = "prod"
+enable_cors    = true
+
+# CORS Configuration
+# Use ["*"] for all origins (development)
+# Use ["https://yourdomain.com"] for production
+allowed_origins = ["*"]
+
+# Resource Tags
+tags = {
+  Project     = "S3 Upload API"
+  ManagedBy   = "Terraform"
+  Environment = "dev"
+  Owner       = "DevOps Team"
+}
